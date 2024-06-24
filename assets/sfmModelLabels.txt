@@ -1,0 +1,7 @@
+0 pc
+1 réfrigérateur
+2 ordinateur
+3 micro onde
+4 imprimante
+5 vidéoProjecteurs
+6 climatiseur

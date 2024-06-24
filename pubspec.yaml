@@ -67,6 +67,8 @@ flutter:
     - assets/yolov2_tiny.tflite
     - assets/labels_converted_model.txt
     - assets/converted_model.tflite
+    - assets/sfmModel.tflite
+    - assets/sfmModelLabels.txt
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

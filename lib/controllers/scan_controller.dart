@@ -63,45 +63,14 @@ class ScanController extends GetxController {
   Future<void> initTFLite() async {
   
     String? res = await Tflite.loadModel(
-      model: "assets/converted_model.tflite",
-      labels: "assets/labels_converted_model.txt",
+      model: "assets/sfmModel.tflite",
+      labels: "assets/sfmModelLabels.txt",
       isAsset: true,
       numThreads: 1,
       useGpuDelegate: false,
     );
    print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&$res");
 }
-
-
-  // void objectDetector(CameraImage image) async {
-    
-  //     var recognitions = await Tflite.runModelOnFrame(
-  //       bytesList: image.planes.map((plane) {
-  //         return plane.bytes;
-  //       }).toList(),
-  //       asynch: true,
-  //       imageHeight: image.height,
-  //       imageWidth: image.width,
-  //       imageMean: 127.5,
-  //       imageStd: 127.5,
-  //       rotation: 90, // Adjust according to your camera orientation
-  //       numResults: 1, // Number of object detection results to return
-  //       threshold: 0.4, // Confidence threshold for detected objects
-  //     );
-
-  //     if (recognitions != null && recognitions.isNotEmpty) {
-  //       print("Result is $recognitions") ; 
-  //       // var ourDetectorObject = recognitions.first;
-  //       // if (ourDetectorObject['confidenceInClass'] * 100 > 45) {
-  //       //   label = ourDetectorObject['detectedClass'].toString();
-  //       //   h = ourDetectorObject['rect']['h'].toDouble();
-  //       //   w = ourDetectorObject['rect']['w'].toDouble();
-  //       //   x = ourDetectorObject['rect']['x'].toDouble();
-  //       //   y = ourDetectorObject['rect']['y'].toDouble();
-  //         // update();
-  //       // }
-  //     }
-  // }
 
   void objectDetector(CameraImage image) async {
   try {
@@ -118,17 +87,17 @@ class ScanController extends GetxController {
   threshold: 0.1,     // defaults to 0.1
   asynch: true        // defaults to true
 );
-    // if (recognitions != null && recognitions.isNotEmpty) {
-    //     var ourDetectorObject = recognitions.first;
-    //     if (ourDetectorObject['confidenceInClass'] * 100 > 45) {
-    //       label = ourDetectorObject['detectedClass'].toString();
-    //       h = ourDetectorObject['rect']['h'].toDouble();
-    //       w = ourDetectorObject['rect']['w'].toDouble();
-    //       x = ourDetectorObject['rect']['x'].toDouble();
-    //       y = ourDetectorObject['rect']['y'].toDouble();
-    //       update();
-    //     }
-    //   }
+    if (recognitions != null && recognitions.isNotEmpty) {
+        var ourDetectorObject = recognitions.first;
+        if (ourDetectorObject != null && ourDetectorObject['confidenceInClass'] != null &&  ourDetectorObject['confidenceInClass'] * 100 >20) {
+          label = ourDetectorObject['detectedClass'].toString();
+          h = ourDetectorObject['rect']['h'].toDouble();
+          w = ourDetectorObject['rect']['w'].toDouble();
+          x = ourDetectorObject['rect']['x'].toDouble();
+          y = ourDetectorObject['rect']['y'].toDouble();
+          update();
+        }
+      }
     if (recognitions != null && recognitions.isNotEmpty) {
       print("Result is $recognitions");
     } else {
