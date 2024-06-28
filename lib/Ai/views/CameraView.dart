@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:get/get.dart';
-import 'package:my_first_app/controllers/scan_controller.dart';
+import 'package:my_first_app/Ai/controllers/scan_controller.dart';
+
+
 
 class CameraView extends StatelessWidget {
   const CameraView({Key? key}) : super(key: key);
@@ -13,14 +15,10 @@ class CameraView extends StatelessWidget {
         init: ScanController(),
         builder: (controller) {
           if (!controller.isCameraInitialized.value) {
-            print(controller.isCameraInitialized.value);
-            print("and is false");
             return Center(
               child: CircularProgressIndicator(),
             );
           } else {
-            print(controller.isCameraInitialized.value);
-            print("and is true");
             return Stack(
               children: [
                 Positioned.fill(
@@ -45,11 +43,11 @@ class CameraView extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  top: (controller.y)*700,
-                  right: (controller.x)*500,
+                  top: (controller.y) * 700,
+                  right: (controller.x) * 500,
                   child: Container(
-                    width: controller.w*100*context.width/100,
-                    height: controller.h*100*context.height/100,
+                    width: controller.w * 100 * context.width / 100,
+                    height: controller.h * 100 * context.height / 100,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(color: Color.fromARGB(255, 110, 162, 153), width: 4.0),
@@ -71,7 +69,7 @@ class CameraView extends StatelessWidget {
                     padding: const EdgeInsets.only(bottom: 50.0),
                     child: FloatingActionButton(
                       onPressed: () {
-                        // Add your take picture functionality here
+                        controller.navigateToSitedObjects();
                       },
                       backgroundColor: Color.fromARGB(255, 110, 162, 153),
                       child: Icon(Icons.camera_alt),

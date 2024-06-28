@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:my_first_app/views/cameraview.dart';
-import 'package:my_first_app/views/siteObjects.dart';
+import 'package:my_first_app/Ai/views/CameraView.dart';
+import 'package:my_first_app/Ai/views/siteObjects.dart';
 
 class SiteZones extends StatefulWidget {
   const SiteZones({super.key});
