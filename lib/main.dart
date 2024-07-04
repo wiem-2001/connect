@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_first_app/challenges/controllers/chalengeController.dart';
+import 'package:my_first_app/challenges/views/offerDetails.dart';
 import 'package:provider/provider.dart';
 
 import 'package:my_first_app/Ai/views/CameraView.dart';
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
         ),
         home: ChangeNotifierProvider(
   create: (context) => ChallengesController(),
-  child: ChallengesWidget(),
+  child: OfferDetailScreen(),
 )
 , // Corrected parameter name
         getPages: [
