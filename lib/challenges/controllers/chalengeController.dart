@@ -8,42 +8,74 @@ class ChallengesController extends ChangeNotifier {
   PageController pageController = PageController();
   int currentPage = 0;
 
-  final List<Challenge> challenges = [
-    Challenge('Edit Proposal', 'Friday, 14th January 2022', 0.50),
-    Challenge('Review Wireframes', 'Monday, 17th January 2022', 0.10),
-    Challenge('Review Site', 'Wednesday, 19th January 2022', 0.20),
-    Challenge('Presentation Prep', 'Thursday, 3rd February 2022', 0.30),
-    Challenge('Blog Page', 'Monday, 7th February 2022', 0.40),
-    Challenge('Complete Checkout Page', 'Monday, 7th February 2022', 0.70),
-    Challenge('New Process Prototype', 'Tuesday, 15th March 2022', 0.80),
-    Challenge('Design Mockups', 'Wednesday, 23rd March 2022', 0.90),
-  ];
+final List<Challenge> challenges = [
+  Challenge(
+    'Unplug Devices',
+    'Unplug all non-essential devices before leaving the office.',
+    'Every day at 6 PM',
+     0.30,
+    10,
+    true
+  ),
+    Challenge(
+    'Turn Off Unnecessary Lights ',
+    'Ensure all non-essential lights are turned off after work hours for a week.',
+    'Every day at 6 PM',
+    0.50,
+    30,
+    true
+  ),
+      Challenge(
+    'Energy Efficient Equipment ',
+    'Replace at least two old appliances with energy-efficient ones.',
+    'Every day at 6 PM',
+    0.0,
+    200,
+    false
+  ),
+];
 
 static final List<Map<String, dynamic>> offers = [
     {
-      'title': 'Efficiency Upgrades',
-      'description': 'Implement at least two energy-efficient',
-      'points': '100pts',
-      'icon': Typicons.gift,
-      'iconColor': Color(0xFFEDB737),
+      'title': 'Earth Day Special',
+      'description': 'Earn double points for all challenges completed during Earth Week.',
+      'points': 'limited-time offer',
+      'icon': Typicons.globe
     },
     {
-      'title': 'Reduce Consumption',
-      'description': 'Reduce energy consumption by 10%',
-      'points': '200pts',
+      'title': 'New Year, New Savings Pack',
+      'description': 'Start the new year with a bang! Use 500 points to get a pack of energy-saving devices and tips.',
+      'points': '500pts',
+      'icon': Typicons.calendar,
+    },
+      {
+      'title': 'Summer Cooling Equipment Discount',
+      'description': 'Beat the heat! Use 350 points to get a discount on energy-efficient cooling equipment.',
+      'points': '350pts',
+      'icon': Typicons.thermometer,
+    },
+    {
+      'title': 'Anniversary Celebration',
+      'description': 'Celebrate our anniversary with double points on all completed challenges.',
+      'points': '350pts',
       'icon': Typicons.gift,
-      'iconColor': Color(0xFF73EDB7),
     },
   ];
 
 
+  // Get active challenges
+  List<Challenge> get activeChallenges {
+    return challenges.where((challenge) => challenge.isActive).toList();
+  }
+
+  // Get new challenges
+  List<Challenge> get newChallenges {
+    return challenges.where((challenge) => !challenge.isActive).toList();
+  }
+
   void changePage(int pageIndex) {
-    pageController.animateToPage(
-      pageIndex,
-      duration: Duration(milliseconds: 300),
-      curve: Curves.easeInOut,
-    );
     currentPage = pageIndex;
+    pageController.jumpToPage(pageIndex);
     notifyListeners();
   }
 }

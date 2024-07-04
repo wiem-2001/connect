@@ -124,9 +124,9 @@ class _ChallengesWidgetState extends State<ChallengesWidget> with TickerProvider
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          _buildPageIndicator(0, 'Active challenges', Icons.energy_savings_leaf),
+                          _buildPageIndicator(1, 'Active challenges', Icons.energy_savings_leaf),
                           SizedBox(width: 8),
-                          _buildPageIndicator(1, 'New challenges', Icons.tips_and_updates),
+                          _buildPageIndicator(0, 'New challenges', Icons.tips_and_updates),
                         ],
                       ),
                     ),
@@ -171,81 +171,92 @@ class _ChallengesWidgetState extends State<ChallengesWidget> with TickerProvider
       ),
     );
   }
-  Widget _buildPageIndicator(int pageIndex, String text, IconData icon) {
-    return GestureDetector(
-      onTap: () {
-        _pageController.animateToPage(
-          pageIndex,
-          duration: Duration(milliseconds: 300),
-          curve: Curves.easeInOut,
-        );
-      },
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        decoration: BoxDecoration(
-          color: _currentPage == pageIndex
-              ? Color.fromARGB(255, 48, 55, 124)
-              : Color.fromARGB(255, 48, 55, 124),
-          border: Border(
-            bottom: BorderSide(
-              color: _currentPage == pageIndex
-                  ? Colors.transparent
-                  : Color.fromARGB(255, 211, 151, 23),
-              width: 2,
-            ),
+ Widget _buildPageIndicator(int pageIndex, String text, IconData icon) {
+  return GestureDetector(
+    onTap: () {
+      _controller.changePage(pageIndex); // Update this line
+    },
+    child: Container(
+      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      decoration: BoxDecoration(
+        color: _controller.currentPage == pageIndex // Update this line
+            ? Color.fromARGB(255, 48, 55, 124)
+            : Color.fromARGB(255, 48, 55, 124),
+        border: Border(
+          bottom: BorderSide(
+            color: _controller.currentPage == pageIndex // Update this line
+                ? Colors.transparent
+                : Color.fromARGB(255, 211, 151, 23),
+            width: 2,
           ),
         ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(
-              icon,
-              size: 14,
-              color: _currentPage == pageIndex ? Colors.white : Colors.white,
-            ),
-            SizedBox(width: 5),
-            Text(
-              text,
-              style: TextStyle(
-                color: _currentPage == pageIndex ? Colors.white : Colors.white,
-                fontSize: 13,
-              ),
-            ),
-          ],
-        ),
       ),
-    );
-  }
- Widget _buildChallengesPageView() {
-    return PageView(
-      controller: _controller.pageController,
-      onPageChanged: (int page) {
-        setState(() {
-          _controller.currentPage = page;
-        });
-      },
-      children: [
-        _buildChallengesPage('Daily Challenges', _controller.challenges),
-        _buildChallengesPage('Weekly Challenges', _controller.challenges),
-      ],
-    );
-  }
-  Widget _buildChallengesPage(String title, List<Challenge> challenges) {
-    return Container(
-      color: Color.fromARGB(255, 39, 45, 105),
-      child: Column(
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.all(10),
-              itemCount: challenges.length,
-              itemBuilder: (context, index) {
-                return ChallengesItem(challenge: challenges[index]);
-              },
+          Icon(
+            icon,
+            size: 14,
+            color: _controller.currentPage == pageIndex // Update this line
+                ? Colors.white
+                : Colors.white,
+          ),
+          SizedBox(width: 5),
+          Text(
+            text,
+            style: TextStyle(
+              color: _controller.currentPage == pageIndex // Update this line
+                  ? Colors.white
+                  : Colors.white,
+              fontSize: 13,
             ),
           ),
         ],
       ),
-    );
-  }
+    ),
+  );
+}
+
+Widget _buildChallengesPageView() {
+  return PageView(
+    controller: _controller.pageController,
+    onPageChanged: (int page) {
+      _controller.changePage(page); // Update this line
+    },
+    children: [
+      _buildChallengesPage('Active Challenges', _controller.activeChallenges),
+      _buildChallengesPage('New Challenges', _controller.newChallenges),
+    ],
+  );
+}
+
+Widget _buildChallengesPage(String title, List<Challenge> challenges) {
+  return Container(
+    color: Color.fromARGB(255, 39, 45, 105),
+    child: Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            title,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        Expanded(
+          child: ListView.builder(
+            padding: const EdgeInsets.all(10),
+            itemCount: challenges.length,
+            itemBuilder: (context, index) {
+              return ChallengesItem(challenge: challenges[index]);
+            },
+          ),
+        ),
+      ],
+    ),
+  );
+}
 }

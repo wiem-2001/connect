@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_first_app/Utils/ImageUtils%20.dart';
 import 'dart:math'; // Import for Random class
-
 import 'package:my_first_app/challenges/models/challengeModel.dart';
 import 'package:my_first_app/challenges/views/CircularImageContainer%20.dart';
 
@@ -12,7 +11,7 @@ class ChallengesItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   final randomImagePath = ImageUtils.getRandomImagePath();
+    final randomImagePath = ImageUtils.getRandomImagePath();
     return Container(
       padding: const EdgeInsets.all(5),
       child: Container(
@@ -29,7 +28,7 @@ class ChallengesItem extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: CircularImageContainer(
-                  centralImagePath: randomImagePath, 
+                  centralImagePath: randomImagePath,
                 ),
               ),
               const SizedBox(width: 10),
@@ -37,24 +36,44 @@ class ChallengesItem extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      challenge.title,
-                      style: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 211, 151, 23),
-                        decoration: TextDecoration.none, 
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          challenge.title,
+                          style: const TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 211, 151, 23),
+                            decoration: TextDecoration.none,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                        ),
+                        Text(
+                          'Points: ${challenge.points} pts',
+                          style: const TextStyle(
+                            fontSize: 8.5,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 211, 151, 23),
+                            decoration: TextDecoration.none,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      challenge.dueDate,
+                      challenge.description,
                       style: TextStyle(
-                        fontSize: 14.5,
+                        fontSize: 12,
                         fontWeight: FontWeight.w500,
                         color: Colors.white,
                         decoration: TextDecoration.none,
                       ),
+                      overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
                     ),
                     const SizedBox(height: 5),
                     Row(
@@ -75,8 +94,9 @@ class ChallengesItem extends StatelessWidget {
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
                             color: Colors.white,
-                            decoration: TextDecoration.none, 
+                            decoration: TextDecoration.none,
                           ),
+                          
                         ),
                       ],
                     ),

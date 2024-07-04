@@ -56,6 +56,8 @@ class EmptyZoneCard extends StatelessWidget {
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                 ),
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
                               ),
                               SizedBox(height: 4),
                               Text(
@@ -64,6 +66,8 @@ class EmptyZoneCard extends StatelessWidget {
                                   color: Colors.grey,
                                   fontSize: 14,
                                 ),
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
                               ),
                               SizedBox(height: 4),
                               Container(
@@ -75,12 +79,14 @@ class EmptyZoneCard extends StatelessWidget {
                                   ),
                                 ),
                                 child: Text(
-                                  'Points Required : ${offer['points']}',
+                                  'Points Required: ${offer['points']}',
                                   style: TextStyle(
                                     color: Color(0xFFEDB737),
                                     fontSize: 12,
                                     fontWeight: FontWeight.bold,
                                   ),
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 1,
                                 ),
                               )
                             ],
@@ -100,9 +106,9 @@ class EmptyZoneCard extends StatelessWidget {
                                 ),
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(8.0), 
+                                padding: const EdgeInsets.all(8.0),
                                 child: Icon(
-                                  Typicons.gift,
+                                   offer['icon'],
                                   size: 70,
                                   color: Color(0xFFEDB737),
                                 ),
