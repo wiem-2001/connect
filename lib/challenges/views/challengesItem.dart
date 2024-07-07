@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_first_app/Utils/ImageUtils%20.dart';
-import 'dart:math'; // Import for Random class
 import 'package:my_first_app/challenges/models/challengeModel.dart';
 import 'package:my_first_app/challenges/views/CircularImageContainer%20.dart';
-
 
 class ChallengesItem extends StatelessWidget {
   final Challenge challenge;
@@ -36,30 +34,39 @@ class ChallengesItem extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // Using Row and Expanded to manage the title and points
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          challenge.title,
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromARGB(255, 211, 151, 23),
-                            decoration: TextDecoration.none,
+                        // Title text
+                        Expanded(
+                          child: Text(
+                            challenge.title,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(255, 211, 151, 23),
+                              decoration: TextDecoration.none,
+                            ),
+                            overflow: TextOverflow.visible,
+                            maxLines: 2,
                           ),
-                          overflow: TextOverflow.ellipsis,
-                                maxLines: 1,
                         ),
-                        Text(
-                          'Points: ${challenge.points} pts',
-                          style: const TextStyle(
-                            fontSize: 8.5,
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromARGB(255, 211, 151, 23),
-                            decoration: TextDecoration.none,
+                        const SizedBox(width: 10),
+                        // Points text
+                        Align(
+                          alignment: Alignment.topRight,
+                          child: Text(
+                            'Points: ${challenge.points} pts',
+                            style: const TextStyle(
+                              fontSize: 9,
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(255, 211, 151, 23),
+                              decoration: TextDecoration.none,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
                           ),
-                          overflow: TextOverflow.ellipsis,
-                                maxLines: 1,
                         ),
                       ],
                     ),
@@ -73,7 +80,7 @@ class ChallengesItem extends StatelessWidget {
                         decoration: TextDecoration.none,
                       ),
                       overflow: TextOverflow.ellipsis,
-                                maxLines: 1,
+                      maxLines: 1,
                     ),
                     const SizedBox(height: 5),
                     Row(
@@ -96,7 +103,6 @@ class ChallengesItem extends StatelessWidget {
                             color: Colors.white,
                             decoration: TextDecoration.none,
                           ),
-                          
                         ),
                       ],
                     ),

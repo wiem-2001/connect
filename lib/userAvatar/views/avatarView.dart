@@ -68,7 +68,7 @@ class AvatarView extends StatelessWidget {
             padding: EdgeInsets.all(16.0),
             child: Card(
               clipBehavior: Clip.antiAliasWithSaveLayer,
-              color: Color.fromARGB(255, 206, 231, 227),
+              color: Color.fromARGB(255, 165, 197, 240),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(50),
               ),

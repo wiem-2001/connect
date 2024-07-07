@@ -85,7 +85,7 @@ class _ProfileSettingsState extends State<ProfileSettings>
                     position: _slideAnimation,
                     child: Card(
                       clipBehavior: Clip.antiAliasWithSaveLayer,
-                      color: Color.fromARGB(255, 206, 231, 227),
+                      color: Color.fromARGB(255, 165, 197, 240),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50),
                       ),
@@ -137,13 +137,13 @@ class _ProfileSettingsState extends State<ProfileSettings>
                     position: _slideAnimation,
                     child: ElevatedButton(
                        style: ButtonStyle(
-      backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 206, 231, 227)), // Green background color
+      backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 165, 197, 240)), 
     ),
                       onPressed: () {
                         // Navigate to the avatar customization screen
                         Navigator.pushNamed(context, '/avatar');
                       },
-                      child: Text('Update Avatar',style: TextStyle(color: Color.fromARGB(255, 110, 162, 153)), 
+                      child: Text('Update Avatar',style: TextStyle(color: Colors.black), 
                       )
                     ),
                   ),
@@ -155,7 +155,6 @@ class _ProfileSettingsState extends State<ProfileSettings>
                   endIndent: 24,
                 ),
                 const SizedBox(height: 12),
-                
                 const SizedBox(height: 12),
                 buildButtonWithAnimation('Edit Profile'),
                 const SizedBox(height: 12),

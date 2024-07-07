@@ -37,11 +37,11 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
+      //  home : ProfileSettings(),
         home: ChangeNotifierProvider(
   create: (context) => ChallengesController(),
-  child: OfferDetailScreen(),
-)
-, // Corrected parameter name
+  child: ChallengesOffersView(),
+),
         getPages: [
           GetPage(name: '/cameraView', page: () => CameraView()),
           GetPage(name: '/siteZones', page: () => SiteZones()),

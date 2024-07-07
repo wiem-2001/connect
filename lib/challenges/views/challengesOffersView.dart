@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:my_first_app/challenges/controllers/chalengeController.dart';
 import 'package:my_first_app/challenges/models/challengeModel.dart';
 import 'package:my_first_app/challenges/views/challengesItem.dart';
-import 'package:my_first_app/challenges/views/offerCardWidget.dart';
+import 'package:my_first_app/challenges/views/offerCardItem.dart';
 import 'package:provider/provider.dart';
 
-class ChallengesWidget extends StatefulWidget {
-  const ChallengesWidget({Key? key}) : super(key: key,);
+class ChallengesOffersView extends StatefulWidget {
+  const ChallengesOffersView({Key? key}) : super(key: key,);
 
   @override
-  _ChallengesWidgetState createState() => _ChallengesWidgetState();
+  _ChallengesOffersView createState() => _ChallengesOffersView();
 }
-class _ChallengesWidgetState extends State<ChallengesWidget> with TickerProviderStateMixin {
+class _ChallengesOffersView extends State<ChallengesOffersView> with TickerProviderStateMixin {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   late PageController _pageController;
   int _currentPage = 0;
@@ -70,7 +70,7 @@ class _ChallengesWidgetState extends State<ChallengesWidget> with TickerProvider
                 ),
               ),
             ),
-            EmptyZoneCard(),
+            OfferCardItem(),
             Padding(
               padding: const EdgeInsets.only(left: 20.0),
               child: Text(
@@ -235,17 +235,7 @@ Widget _buildChallengesPage(String title, List<Challenge> challenges) {
     color: Color.fromARGB(255, 39, 45, 105),
     child: Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            title,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
+    
         Expanded(
           child: ListView.builder(
             padding: const EdgeInsets.all(10),
